@@ -1,0 +1,73 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[spanish, es-tabla]{}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float} 
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{booktabs}
+
+\title{\begin{center}
+ {\LARGE \scshape Universidad Nacional Aut\'onoma de M\'exico \\ Facultad de Ciencias \\ Inteligencia Artificial Proyecto 03: Sistema de recomendaciones }
+  \rule{1\textwidth}{2.0pt}\\
+\end{center}}
+\author{
+  Guzmán Mosco, Mario Alexis\\
+  \and  
+  Mart\'inez Mendoza, Miguel \'Angel\\
+  \and
+  Torres Bucio, Miriam\\
+}
+\date{27 de Octubre 2019}
+
+\begin{document}
+\maketitle
+
+\section{Introducti\'on}
+Los sistemas de recomendaci\'on aparecieron debido al gran incremento de los datos en la web y en las distintas aplicaciones que la gente usa d\'ia con d\'ia. Gracias a la gran cantidad de informaci\'on a la cu\'al los usuarios tiene acceso, han sido capaces de obtener datos utiles, Sin embargo, el problema con \'esto es que como las bases de datos son muy extensas son incapaces de abstraer informacion util y adecuada para ellos de una manera f\'acil y r\'apida, a esto se le conoce como desbordamiento de datos, dicho problema no es causado solo por el volumen de los datos, si no tambien por que se posee informaci\'on no deseada o irrelevante para el ususario.\\
+Es por eso que nace la necesidad de crear un sistema que sea cap\'az de hacer esa busqueda de manera autom\'atica y con solo unos clicks.
+En este proyecto abordamso 2 tipos de sistemas de recomendaci\'on: \\
+Los primeros sistemas de recomendación comenzaron a eliminar la información inútil. Este sistema se llama \textbf{filtrado}, además del filtrado, los investigadores crearon un sistema personalizado para hacer recomendaciones, dichos sistemas de recomendación se centran en cada usuario. Según la preferencia de los usuarios, los sistemas de recomendación proporcionan un servicio o información favorable para el usuario.\\ Actualmente, la importancia de la recomendación de información está aumentando en el entorno web y muchos sitios web comenzaron a desarrollar y utilizar la tecnología de recomendación para proporcionar servicios personalizados para el usuario un claro ejemplo de esto es Amazon, Netflix, entre otros.\\
+Como ya se mencion\'o anteriormente, los usuarios prefieren los sistemas de recomendación porque les ayuda a ahorrar tiempo para buscar información y obtener los mejores documentos, productos o servicios. A pesar del gran \'exito de los sistemas de recomendaci\'on, los investigadores se han enfrentado a diversos problemas uno de ellos y quiz\'a uno de los m\'as grandes es el hecho de de que no siempre se hacen las mejores recoemndaciones para sus usuarios, es aqu\'i donde entran los investigadores de \textbf{machine learning}, quienes se enfocan en mejorar dichos sistemas para as\'i hacer recomendaciones m\'as efectivas y que en realidad vallan acorde a la informaci\'on y gustos del usuario.\\  
+En este proyecto se busca desarrollar un sistema que sea cap\'az de recomendar al usuario distintas aplicaciones de la playstore, basandose en sus gustos, para \'esto se aplicar\'a el m\'etodo de aprendizaje $k-means$.
+\section{Definici\'on del problema}
+\begin{enumerate}
+\item[$\ast$]\textbf{Descripción del problema y por qué es necesario un sistema de recomendaci\'on} \\
+Objetivo de nuestro sistema: 
+Describir el problema
+\item[$\ast$]\textbf{Descripción del modelado del problema }(describir y usar ejemplos) \\
+\begin{enumerate}
+\item Características del perfil del usuario: El sistema no necesita mucha informaci\'on acerca del usuario, solo son necesarios los nombres de las aplicaciones que le gustan, para a partir de ah\'i hacer la busqueda y mas adelante hacer la recomendaci\'on\\
+\item Características que debe cumplir el producto: A diferencia del usuario, con el producto si necesitamos conocer mucha m\'as informaci\'on, en este caso usaremos 7 caracter\'isticas, esto para poder hacer una recomendaci\'on m\'as precisa, necesitamos conocer: \\
+\begin{enumerate}
+\item Nombre de la aplicac\'on  
+\item Categor\'ia
+\item Rating 
+\item Reviews
+\item Peso
+\item N\'umero de descargas
+\item Contenido (edades recomendadas)
+\item G\'enero
+\end{enumerate}
+\end{enumerate} 
+\end{enumerate}
+\section{Descripcion de la propuesta e implementaci\'on}
+\begin{enumerate}
+\item[$\ast$]\textbf{Descripci\'on del esquema de representaci\'on del conocimiento} (justificar el tipo de esquema de representaci\'on y su relaci\'on con el proyecto) (¿Cuál es el esquema que se utiliza para representar el conocimiento? y ¿Cuáles son las propiedades de ese esquema?, ¿Qué tipo esquema de representación de conocimiento es (declarativo o procedimental, etc.)? ¿Qué estrategias se pueden usar para manipular este tipo de conocimiento?)
+\item[$\ast$]\textbf{Descripci\'on de la forma de operar el esquema de representaci\'on de conocimiento de acuerdo con el objetivo del proyecto}\\
+Como se mencion\'o anteriormente, para la resoluci\'on de \'este problema se propone utilizar \textbf{K-means Clustering}, basandonos en los usuarios, mas en espec\'ifico, nos basaremos en sus gustos. (Explicar que es kmeans y porque lo haremos basado en usuarios)
+\item[$\ast$]\textbf{Entorno de trabajo REAS} (Tabla de REAS)
+\item[$\ast$]\textbf{Propiedades del entorno} (Tabla del entorno)
+\item[$\ast$]\textbf{Complejidad teórica de la solución} (Demsotrar formalmente)
+\item[$\ast$]\textbf{Diccionario de t\'erminos / Instrucciones para operar el sistema}
+\item[$\ast$]\textbf{Comportamiento del agente} \\
+Ejemplo con respecto a los objetivos 
+\end{enumerate}
+\section{Conclusiones}
+\begin{enumerate}
+\item[$\ast$]\textbf{Complejidad real de la soluci\'on}
+\item[$\ast$]\textbf{Qué tan adecuada es la recomendaci\'on}
+\item[$\ast$]\textbf{Ventajas y desventajas}
+\end{enumerate}
+\section{Bibliografia}
+\end{document}
