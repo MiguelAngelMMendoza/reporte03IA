@@ -6,6 +6,7 @@
 \usepackage{float} 
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{booktabs}
+\usepackage{hyperref}
 
 \title{\begin{center}
  {\LARGE \scshape Universidad Nacional Aut\'onoma de M\'exico \\ Facultad de Ciencias \\ Inteligencia Artificial Proyecto 03: Sistema de recomendaciones }
@@ -27,48 +28,94 @@
 Los sistemas de recomendaci\'on aparecieron debido al gran incremento de los datos en la web y en las distintas aplicaciones que la gente usa d\'ia con d\'ia. Gracias a la gran cantidad de informaci\'on a la cu\'al los usuarios tiene acceso, han sido capaces de obtener datos utiles, Sin embargo, el problema con \'esto es que como las bases de datos son muy extensas son incapaces de abstraer informacion util y adecuada para ellos de una manera f\'acil y r\'apida, a esto se le conoce como desbordamiento de datos, dicho problema no es causado solo por el volumen de los datos, si no tambien por que se posee informaci\'on no deseada o irrelevante para el ususario.\\
 Es por eso que nace la necesidad de crear un sistema que sea cap\'az de hacer esa busqueda de manera autom\'atica y con solo unos clicks.
 En este proyecto abordamso 2 tipos de sistemas de recomendaci\'on: \\
-Los primeros sistemas de recomendación comenzaron a eliminar la información inútil. Este sistema se llama \textbf{filtrado}, además del filtrado, los investigadores crearon un sistema personalizado para hacer recomendaciones, dichos sistemas de recomendación se centran en cada usuario. Según la preferencia de los usuarios, los sistemas de recomendación proporcionan un servicio o información favorable para el usuario.\\ Actualmente, la importancia de la recomendación de información está aumentando en el entorno web y muchos sitios web comenzaron a desarrollar y utilizar la tecnología de recomendación para proporcionar servicios personalizados para el usuario un claro ejemplo de esto es Amazon, Netflix, entre otros.\\
-Como ya se mencion\'o anteriormente, los usuarios prefieren los sistemas de recomendación porque les ayuda a ahorrar tiempo para buscar información y obtener los mejores documentos, productos o servicios. A pesar del gran \'exito de los sistemas de recomendaci\'on, los investigadores se han enfrentado a diversos problemas uno de ellos y quiz\'a uno de los m\'as grandes es el hecho de de que no siempre se hacen las mejores recoemndaciones para sus usuarios, es aqu\'i donde entran los investigadores de \textbf{machine learning}, quienes se enfocan en mejorar dichos sistemas para as\'i hacer recomendaciones m\'as efectivas y que en realidad vallan acorde a la informaci\'on y gustos del usuario.\\  
+Los primeros sistemas de recomendación comenzaron a eliminar la información inútila este tipo de sistemas se les conoce como \textbf{filtrado colaborativo}, además de \'este tipo de filtrado, los investigadores crearon un sistema personalizado para hacer recomendaciones, el cual se centra en cada usuario, según sus preferencias los sistemas de recomendación proporcionan un servicio o información favorable para el usuario, a \'este tipo de sistemas se les conoce como \textbf{Filtrado basado en contenido}.\\ Actualmente, la importancia de la recomendación de información está aumentando en distintos entornos es por eso que muchos sitios web comenzaron a desarrollar y utilizar la tecnología de recomendación para proporcionar servicios personalizados para el usuario un claro ejemplo de esto es Amazon, Netflix, entre otros.\\
+Como ya se mencion\'o anteriormente, los usuarios prefieren los sistemas de recomendación porque les ayudan a ahorrar tiempo para buscar información y obtener los mejores documentos, productos o servicios. A pesar del gran \'exito de los sistemas de recomendaci\'on, los investigadores se han enfrentado a diversos problemas uno de ellos y quiz\'a uno de los m\'as grandes es el hecho de de que no siempre se hacen las mejores recomendaciones para sus usuarios, es aqu\'i donde entran los investigadores de \textbf{machine learning}, quienes se enfocan en mejorar dichos sistemas para as\'i hacer recomendaciones m\'as efectivas y que en realidad vallan acorde a la informaci\'on y gustos del cliente.\\  
 \section{Definici\'on del problema}
 \begin{enumerate}
 \item[$\ast$]\textbf{Descripción del problema y por qué es necesario un sistema de recomendaci\'on} \\
-En este proyecto se busca desarrollar un sistema que basandose en los gustos del usuario sea cap\'az de recomendar distintas aplicaciones de la tienda de Android, playstore, para \'esto se aplicar\'a el m\'etodo de aprendizaje $k-means$, usando el framework de desarrollo web $Django$, un ambiente virtual en $anaconda$ y el lenguaje de programaci\'on $Python$
-\item[$\ast$]\textbf{Descripción del modelado del problema }(describir y usar ejemplos) \\
+En este proyecto se busca desarrollar un sistema que basandose en los gustos del usuario sea cap\'az de recomendar distintas aplicaciones de la tienda de Android, Play Store, para \'esto se emplear\'a la t\'ecnica de \textbf{filtrado basado en contenido}, usando como punto de partida los gustos del usuario y se aplicar\'a el m\'etodo de aprendizaje $k-means$, usando el framework de desarrollo web $Django$, un ambiente virtual en $anaconda$ y el lenguaje de programaci\'on $Python$
+\item[$\ast$]\textbf{Descripción del modelado del problema } \\
 \begin{enumerate}
 \item Características del perfil del usuario: El sistema no necesita mucha informaci\'on acerca del usuario, solo son necesarios los nombres de las aplicaciones que le gustan, para a partir de ah\'i hacer la busqueda y mas adelante hacer la recomendaci\'on\\
 Ejemplo:\\
 El usuario indica que le gustan las aplicaciones: Zombie Tsunami, Bubble shooter 2 y Geometry Dash World
-\item Características que debe cumplir el producto: A diferencia del usuario, con el producto si necesitamos conocer mucha m\'as informaci\'on, en este caso usaremos 7 caracter\'isticas, esto para poder hacer una recomendaci\'on m\'as precisa, necesitamos conocer: \\
+\item Características que debe cumplir el producto: A diferencia del usuario, con el producto si necesitamos conocer mucha m\'as informaci\'on, en este caso usaremos una base de datos con 6 caracter\'isticas en espec\'ifico, esto para poder hacer una recomendaci\'on m\'as precisa, necesitamos conocer: \\
 \begin{enumerate}
-\item Nombre de la aplicac\'on: Nombre oficial con el que se encuentra la app en la playstore
-\item Categor\'ia: 
+\item Nombre de la aplicaci\'on: Nombre oficial con el que se encuentra la app en la Play Store
+\item Categor\'ia:$^{1}$ Las categorías ayudan a los usuarios a buscar las aplicaciones más relevantes en Play Store agrup\'andolas seg\'un las caracter\'isticas que comparten.
 \item Rating: Calificaci\'on asignada por los usuarios 
-\item Reviews: Cantidad de comentarios
+\item Reviews: Cantidad de comentarios que los usuarios han hecho sobre la app
 \item Peso: Peso en $mb$
-\item Descargas: cantidad de veces que la app ha sido descargada e instalada por los usuarios
-\item Contenido: para que edades es recomendada la app 
-\item G\'enero
+\item Descargas: Cantidad de veces que la app ha sido descargada e instalada por los usuarios
+\item Contenido:$^{2}$ Permite mediante un n\'umero clasificar las aplicaciones con respecto a la idoneidad para el p\'ublico en t\'erminos de distintos temas.  
 \end{enumerate}
 Ejemplo: \\
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-Nombre             & Catergoria & Rating & Reviews & Peso & desacargas & Contenido & Genero \\ \hline
-Zombie Tsunami     & 18         & 4.4    & 4920817 & 73   & 100000000            & 9         & Arcade \\ \hline
-Bubble shooter 2   & 18         & 4.3    & 23005   & 28   & 5000000              & 10        & Arcade \\ \hline
-Geometry Dash Word & 18         & 4.6    & 760628  & 63   & 10000000             & 10        & Arcade \\ \hline
+Nombre             & Catergoria & Rating & Reviews & Peso & desacargas & Contenido \\ \hline
+Zombie Tsunami     & 18         & 4.4    & 4920817 & 73   & 100000000            & 9  \\ \hline
+Bubble shooter 2   & 18         & 4.3    & 23005   & 28   & 5000000              & 10 \\ \hline
+Geometry Dash Word & 18         & 4.6    & 760628  & 63   & 10000000             & 10 \\ \hline
 \end{tabular}
 \caption{Ejemplo}
 \label{Ejemplo}
 \end{table}
 \end{enumerate} 
 \end{enumerate}
+$^{1}$Google Play Store cuenta con un total de 33 categor\'ias con las que separan su contenido, para poder usar esa informaci\'on en k-means, se le asign\'o un valor num\'erico arbitrario a cada categor\'ia\\
+\begin{table}[H]
+\centering
+\begin{tabular}{ll|l|l|}
+\hline
+\multicolumn{1}{|l|}{CATEGOR\'IA} & VALOR & CATEGOR\'IA & VALOR \\ \hline
+\multicolumn{1}{|l|}{Art and design}             & 1     & Lifestyle                  & 17    \\ \hline
+\multicolumn{1}{|l|}{Auto and vehicles}          & 2     & Game                       & 18    \\ \hline
+\multicolumn{1}{|l|}{Beauty}                     & 3     & Family                     & 19    \\ \hline
+\multicolumn{1}{|l|}{Books}                      & 4     & Medical                    & 20    \\ \hline
+\multicolumn{1}{|l|}{Bussines}                   & 5     & Social                     & 21    \\ \hline
+\multicolumn{1}{|l|}{Comics}                     & 6     & Shopping                   & 22    \\ \hline
+\multicolumn{1}{|l|}{Communication}              & 7     & Photography                & 23    \\ \hline
+\multicolumn{1}{|l|}{Dating}                     & 8     & Sports                     & 24    \\ \hline
+\multicolumn{1}{|l|}{Education}                  & 9     & Travel                     & 25    \\ \hline
+\multicolumn{1}{|l|}{Entertaiment}               & 10    & Tools                      & 26    \\ \hline
+\multicolumn{1}{|l|}{Events}                     & 11    & Personalization            & 27    \\ \hline
+\multicolumn{1}{|l|}{Finance}                    & 12    & Productivity               & 28    \\ \hline
+\multicolumn{1}{|l|}{Food and drink}             & 13    & Parenting                  & 29    \\ \hline
+\multicolumn{1}{|l|}{Health and fitness}         & 14    & Weather                    & 30    \\ \hline
+\multicolumn{1}{|l|}{House and home}             & 15    & Videoplayers               & 31    \\ \hline
+\multicolumn{1}{|l|}{Libraries}                  & 16    & News                       & 32    \\ \hline
+                                                 &       & Navigation                 & 33    \\ \cline{3-4} 
+\end{tabular}
+\caption{Categor\'ias de Google Play Store}
+\label{Categorias}
+\end{table}
+$^{2}$Al igual que con las categor\'ias, al contenido se le asign\'o un valor num\'erico para poder trabajar.\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+CONTENIDO       & VALOR \\ \hline
+Everyone        & 10    \\ \hline
+Everyone 10+    & 9     \\ \hline
+Teen            & 8     \\ \hline
+Mature 17+      & 4     \\ \hline
+Adults only 18+ & 3     \\ \hline
+Unrated         & 1     \\ \hline
+\end{tabular}
+\caption{Contenidos de Google Play Store}
+\label{Categorias}
+\end{table} 
 \section{Descripcion de la propuesta e implementaci\'on}
 \begin{enumerate}
 \item[$\ast$]\textbf{Descripci\'on del esquema de representaci\'on del conocimiento} (justificar el tipo de esquema de representaci\'on y su relaci\'on con el proyecto) (¿Cuál es el esquema que se utiliza para representar el conocimiento? y ¿Cuáles son las propiedades de ese esquema?, ¿Qué tipo esquema de representación de conocimiento es (declarativo o procedimental, etc.)? ¿Qué estrategias se pueden usar para manipular este tipo de conocimiento?)
 \item[$\ast$]\textbf{Descripci\'on de la forma de operar el esquema de representaci\'on de conocimiento de acuerdo con el objetivo del proyecto}\\
-Como se mencion\'o anteriormente, para la resoluci\'on de \'este problema se propone utilizar \textbf{K-means Clustering}, basandonos en los usuarios, mas en espec\'ifico, nos basaremos en sus gustos. (Explicar que es kmeans y porque lo haremos basado en usuarios)
+Como se mencion\'o anteriormente, para la resoluci\'on de \'este problema se propone utilizar \textbf{K-means Clustering}, basandonos en los gustos de los usuarios, es por eso que se usar\'a el \textbf{filtrado basado en contenido} para poder encontrar las aplicaciones que m\'as se acerquen a sus gustos. (Explicar que es kmeans, flitrado basado en contenido y porque lo haremos basado en usuarios)
+\begin{enumerate}
+\item[$\bullet$]K-means clustering
+\item[$\bullet$]Filtrado basad en contenido
+\end{enumerate}
 \item[$\ast$]\textbf{Entorno de trabajo REAS}
 \begin{enumerate}
 \item[$\bullet$]Agente: Sistema de recomendaciones
@@ -87,8 +134,8 @@ Como se mencion\'o anteriormente, para la resoluci\'on de \'este problema se pro
 \item[$\bullet$]Est\'atico / Din\'amico: Est\'atico, el entorno de trabajo no cambia, siempre se usa el mismo dataset 
 \item[$\bullet$]Agente: Multiagente, hay una interacci\'on entre el usuario y el software
 \end{enumerate}
-\item[$\ast$]\textbf{Complejidad teórica de la solución} (Demsotrar formalmente)
-\item[$\ast$]\textbf{Diccionario de t\'erminos / Instrucciones para operar el sistema}
+\item[$\ast$]\textbf{Complejidad teórica de la solución} (Demostrar formalmente)
+\item[$\ast$]\textbf{Instrucciones para operar el sistema}\\
 \item[$\ast$]\textbf{Comportamiento del agente} \\
 Ejemplo con respecto a los objetivos 
 \end{enumerate}
@@ -99,4 +146,9 @@ Ejemplo con respecto a los objetivos
 \item[$\ast$]\textbf{Ventajas y desventajas}
 \end{enumerate}
 \section{Bibliografia}
+\begin{enumerate}
+\item[$\ast$]\url{https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_por_edades_(cine)}
+\item[$\ast$]\url{https://42matters.com/docs/app-market-data/android/apps/google-play-categories}
+\item[$\ast$]MOVIE RECOMMENDATION WITH K-MEANS CLUSTERING AND SELF-ORGANIZING MAP METHODS, Eugene Seo and Ho-Jin Choi, Department of Computer Science, Korea Advanced Institute of Science and Techonology (KAIST), 119 Munjro,Yuseong, Daejeon, 305-732, Korea
+\end{enumerate}
 \end{document}
